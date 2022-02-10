@@ -1,4 +1,4 @@
-import initiateMintWithURIAndPrice from '../../lib/initiateMintWithURIAndPrice'
+import initiateMintWithURIAndPrice from '../../lib/initiateMintWithURIAndPrice.js'
 jest.mock('../../lib/initiateMintWithURIAndPrice')
 
 describe("mintWithLifecycleHooks", () => {

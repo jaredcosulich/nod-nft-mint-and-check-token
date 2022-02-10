@@ -9,7 +9,7 @@ import walletHasToken from './lib/walletHasToken.js';
 
 import SimpleURIAndPriceNFTWithWithdrawalRoyalty from './contracts/SimpleURIAndPriceNFTWithWithdrawalRoyalty.js'
 
-const NFTMintAndCheckToken = {
+const NodNFT = {
   lib: {
     instantiateContract,
     instantiateWeb3Modal,
@@ -25,4 +25,4 @@ const NFTMintAndCheckToken = {
   }
 }
 
-export default NFTMintAndCheckToken;
+export default NodNFT;

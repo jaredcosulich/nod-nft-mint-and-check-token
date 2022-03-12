@@ -1,3 +1,4 @@
+import ethereumNetworkIdToName from './lib/ethereumNetworkIdToName.js';
 import instantiateContract from './lib/instantiateContract.js';
 import instantiateWeb3Modal from './lib/instantiateWeb3Modal.js';
 import initiateMintWithURIAndPrice from './lib/initiateMintWithURIAndPrice.js';
@@ -11,6 +12,7 @@ import SimpleURIAndPriceNFTWithWithdrawalRoyalty from './contracts/SimpleURIAndP
 
 const NodNFT = {
   lib: {
+    ethereumNetworkIdToName,
     instantiateContract,
     instantiateWeb3Modal,
     initiateMintWithURIAndPrice,

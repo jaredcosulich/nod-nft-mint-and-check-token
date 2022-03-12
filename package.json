@@ -1,6 +1,6 @@
 {
   "name": "nod-nft-mint-and-check-token",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "test": "npx jest --watch"
   },

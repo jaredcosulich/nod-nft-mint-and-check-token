@@ -1,5 +1,6 @@
 const SimpleURIAndPriceNFTWithWithdrawalRoyalty = {
   "deployedAt": "2022-03-12T13:47:48.299",
+  "address": "0xbd51B5ba6998B5AEe01e48Ea086B69B236496751",
   "abi": [
     {
       "type": "constructor",

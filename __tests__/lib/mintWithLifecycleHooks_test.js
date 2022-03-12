@@ -1,5 +1,6 @@
-import initiateMintWithURIAndPrice from '../../lib/initiateMintWithURIAndPrice.js'
-jest.mock('../../lib/initiateMintWithURIAndPrice')
+import mintWithLifecycleHooks from '../../lib/mintWithLifecycleHooks.js'
+import initiateMintWithPrice from '../../lib/initiateMintWithPrice.js'
+jest.mock('../../lib/initiateMintWithPrice')
 
 describe("mintWithLifecycleHooks", () => {
   const contract = jest.fn()
@@ -7,24 +8,22 @@ describe("mintWithLifecycleHooks", () => {
   const pendingTransaction = {
     wait: jest.fn(() => ({}))
   }
-  const onStatusChange = jest.fn()
   const onMint = jest.fn()
+  const onTransaction = jest.fn()
   const onFailure = jest.fn()
-  const metadataUri = 'METADATA_URI'
   const mintPriceInWei = Math.pow(10, 16).toString()
 
   describe("with successful mint", () => {
     beforeEach(async () => {
-      initiateMintWithURIAndPrice.mockReturnValueOnce(
+      initiateMintWithPrice.mockReturnValueOnce(
         pendingTransaction
       )
 
-      await mintWithStatusMessages({
+      await mintWithLifecycleHooks({
         contract,
         provider,
-        metadataUri,
         mintPriceInWei,
-        onStatusChange,
+        onTransaction,
         onMint,
         onFailure
       })
@@ -32,17 +31,17 @@ describe("mintWithLifecycleHooks", () => {
 
     afterEach(() => {
       [contract, provider, pendingTransaction.wait,
-      onStatusChange, onMint, onFailure].forEach(
+      onTransaction, onMint, onFailure].forEach(
         (mockFn) => mockFn.mockReset() 
       )
     })
 
     it("should initialize the minting process", () => {
-      expect(initiateMintWithURIAndPrice.mock.calls).toHaveLength(1)
+      expect(initiateMintWithPrice.mock.calls).toHaveLength(1)
     })
 
-    it('should report status changes', () => {
-      expect(onStatusChange).toHaveBeenCalledTimes(1)
+    it('should call onTransaction when the transaction is pending', () => {
+      expect(onTransaction).toHaveBeenCalledTimes(1)
     })
 
     it('should call onMint when complete', () => {
@@ -51,21 +50,19 @@ describe("mintWithLifecycleHooks", () => {
   })
   
   it('should report status and failure on error', async () => {
-    initiateMintWithURIAndPrice.mockImplementation(() => {
+    initiateMintWithPrice.mockImplementation(() => {
       throw {code: 4001}
     });
 
-    await mintWithStatusMessages({
+    await mintWithLifecycleHooks({
       contract,
       provider,
-      metadataUri,
       mintPriceInWei,
-      onStatusChange,
+      onTransaction,
       onMint,
       onFailure
     })
 
-    expect(onStatusChange).toHaveBeenLastCalledWith("You've rejected the minting. Please try again below.")
     expect(onFailure).toHaveBeenCalledTimes(1)
   })
 

@@ -7,6 +7,7 @@ import providerSignerHasToken from './lib/providerSignerHasToken.js';
 import waitForContractTransactionToComplete from './lib/waitForContractTransactionToComplete.js';
 import mintWithLifecycleHooks from './lib/mintWithLifecycleHooks.js';
 import walletHasToken from './lib/walletHasToken.js';
+import walletTokens from './lib/walletTokens.js';
 
 import SimpleURIAndPriceNFTWithWithdrawalRoyalty from './contracts/SimpleURIAndPriceNFTWithWithdrawalRoyalty.js'
 
@@ -20,7 +21,8 @@ const NodNFT = {
     mintWithLifecycleHooks,
     providerSignerHasToken,
     waitForContractTransactionToComplete,
-    walletHasToken
+    walletHasToken,
+    walletTokens
   },
   contracts: {
     SimpleURIAndPriceNFTWithWithdrawalRoyalty

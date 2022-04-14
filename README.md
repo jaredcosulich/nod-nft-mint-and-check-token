@@ -42,6 +42,12 @@ await providerSignerHasToken(provider, contract)
 
 providerSignerHasToken takes a provider and a contract and checks the wallet of the user to see if they have the token in their wallet.
 
+### walletTokens
+
+await walletTokens(contract, walletAddress)
+
+walletTokens takes a contract and a wallet address and returns an array of tokenIds that are in the wallet.
+
 ## Secondary Functions
 
 These functions are used by the primary functions and can be used separately if necessary.
